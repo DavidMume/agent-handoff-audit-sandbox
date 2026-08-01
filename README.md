@@ -1,3 +1,5 @@
+<img src="assets/hero-banner.svg" alt="Agent Handoff & Audit — Claude Code and Codex talking only through .agent-coordination/" width="100%">
+
 # 🤝 Agent Handoff & Audit
 
 **Let Claude Code and OpenAI Codex work on the same repo, one at a time, without losing context or re-reading the whole conversation.**
@@ -17,44 +19,19 @@ You bounce between Claude Code and Codex on the same project. Each one starts co
 
 ## The fix
 
-A tiny **shared ledger** — `.agent-coordination/` — that both agents read before working and update after working. No chat memory required.
+A tiny **shared ledger** — `.agent-coordination/` — that both agents read before working and update after working. No chat memory required. Notice neither agent ever talks to the other directly — everything routes through the ledger, so a handoff works even hours or days apart.
 
-```mermaid
-sequenceDiagram
-    participant C as Claude Code
-    participant L as .agent-coordination/
-    participant X as Codex
+**Session 1 — Claude Code:** reads `CURRENT_STATE` + `RISKS` + the last 2 `WORKLOG` entries → claims scope in `ACTIVE_SESSION` → does the work → appends one `WORKLOG` entry → closes the session.
 
-    Note over C,X: Session 1
-    C->>L: read CURRENT_STATE, RISKS, last 2 WORKLOG entries
-    C->>L: write ACTIVE_SESSION (claim scope)
-    C->>C: do the work
-    C->>L: append WORKLOG entry, update CURRENT_STATE
-    C->>L: close ACTIVE_SESSION
-
-    Note over C,X: Session 2 (later, different agent)
-    X->>L: read CURRENT_STATE, RISKS, last 2 WORKLOG entries
-    X->>L: review Claude's latest handoff (takeover review)
-    X->>X: continue the task
-    X->>L: append WORKLOG entry, update CURRENT_STATE
-```
+**Session 2 — Codex (later, maybe days later):** reads the same files → reviews Claude's latest handoff before touching anything (*takeover* review) → continues → appends its own `WORKLOG` entry.
 
 ---
 
 ## What gets created
 
-```
-your-project/
-├── AGENTS.md              ← short pointer to the protocol (for Codex)
-├── CLAUDE.md               ← same pointer (for Claude Code)
-└── .agent-coordination/    ← gitignored by default — local, operational, not for publishing
-    ├── ACTIVE_SESSION.md   ← who's working right now, on what, since when
-    ├── CURRENT_STATE.md    ← replaceable snapshot: what's true about the project today
-    ├── WORKLOG.md          ← append-only handoff log — never rewritten, never deleted
-    ├── DECISIONS.md        ← durable decisions future agents must respect
-    ├── RISKS.md             ← open risks, blockers, accepted trade-offs
-    └── FINAL_AUDIT.md      ← reciprocal cross-agent audit findings + sign-off
-```
+<img src="assets/ledger-files.svg" alt="The six files inside .agent-coordination/: ACTIVE_SESSION, CURRENT_STATE, WORKLOG, DECISIONS, RISKS, FINAL_AUDIT" width="100%">
+
+Plus two short pointer files at the project root: `AGENTS.md` (for Codex) and `CLAUDE.md` (for Claude Code), both linking back to this protocol.
 
 `.agent-coordination/` stays out of git by default — it can contain operational or security findings that shouldn't end up in a public repo or a shipped bundle.
 
@@ -62,16 +39,7 @@ your-project/
 
 ## The workflow
 
-```mermaid
-flowchart LR
-    A[start] -->|read ledger, check for<br/>an active session| B[do the task]
-    B --> C[handoff]
-    C -->|append WORKLOG entry<br/>update CURRENT_STATE| D{next agent}
-    D -->|takeover| E[review previous handoff<br/>before touching code]
-    E --> B
-    B -.->|milestone or<br/>project complete| F[audit / final-audit]
-    F -->|each agent audits<br/>the OTHER's changes| G[FINAL_AUDIT.md<br/>signed off or PROVISIONAL]
-```
+<img src="assets/workflow-cycle.svg" alt="Workflow cycle: start, work, handoff, takeover loop back to work; audit branches off at milestones" width="100%">
 
 | Mode | What happens |
 |---|---|

@@ -1,0 +1,88 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 460" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif">
+  <rect x="0" y="0" width="1000" height="460" rx="24" fill="#0d1117"/>
+  <rect x="0.5" y="0.5" width="999" height="459" rx="23.5" fill="none" stroke="#30363d"/>
+  <text x="500" y="44" text-anchor="middle" font-size="20" font-weight="700" fill="#e6edf3">.agent-coordination/</text>
+  <text x="500" y="66" text-anchor="middle" font-size="13" fill="#8b949e">local-only · gitignored by default</text>
+
+  <!-- card template repeated via groups -->
+  <!-- Row 1 -->
+  <g transform="translate(40,100)">
+    <rect width="290" height="140" rx="14" fill="#161b22" stroke="#58a6ff" stroke-width="1.6"/>
+    <g transform="translate(28,32)" stroke="#58a6ff" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+      <circle r="14"/>
+      <path d="M0,-8 L0,0 L7,5"/>
+    </g>
+    <text x="54" y="26" font-size="15" font-weight="700" fill="#e6edf3">ACTIVE_SESSION.md</text>
+    <text x="20" y="66" font-size="12.5" fill="#8b949e">Who's working right now,</text>
+    <text x="20" y="84" font-size="12.5" fill="#8b949e">on what scope, since when.</text>
+    <text x="20" y="110" font-size="11" fill="#58a6ff">replaceable</text>
+  </g>
+
+  <g transform="translate(355,100)">
+    <rect width="290" height="140" rx="14" fill="#161b22" stroke="#58a6ff" stroke-width="1.6"/>
+    <g transform="translate(28,32)" stroke="#58a6ff" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="-13" y="-14" width="26" height="28" rx="4"/>
+      <line x1="-7" y1="-5" x2="7" y2="-5"/>
+      <line x1="-7" y1="2" x2="7" y2="2"/>
+      <line x1="-7" y1="9" x2="2" y2="9"/>
+    </g>
+    <text x="54" y="26" font-size="15" font-weight="700" fill="#e6edf3">CURRENT_STATE.md</text>
+    <text x="20" y="66" font-size="12.5" fill="#8b949e">Short snapshot: what's true</text>
+    <text x="20" y="84" font-size="12.5" fill="#8b949e">about the project today.</text>
+    <text x="20" y="110" font-size="11" fill="#58a6ff">replaceable</text>
+  </g>
+
+  <g transform="translate(670,100)">
+    <rect width="290" height="140" rx="14" fill="#161b22" stroke="#d97757" stroke-width="1.6"/>
+    <g transform="translate(28,32)" stroke="#d97757" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+      <line x1="-13" y1="-14" x2="-13" y2="14"/>
+      <line x1="-13" y1="-14" x2="13" y2="-14"/>
+      <line x1="-13" y1="-4" x2="13" y2="-4"/>
+      <line x1="-13" y1="6" x2="8" y2="6"/>
+      <path d="M4,10 L8,14 L14,4" stroke-width="2"/>
+    </g>
+    <text x="54" y="26" font-size="15" font-weight="700" fill="#e6edf3">WORKLOG.md</text>
+    <text x="20" y="66" font-size="12.5" fill="#8b949e">Append-only handoff log.</text>
+    <text x="20" y="84" font-size="12.5" fill="#8b949e">Never rewritten, never deleted.</text>
+    <text x="20" y="110" font-size="11" fill="#d97757">append-only</text>
+  </g>
+
+  <!-- Row 2 -->
+  <g transform="translate(40,270)">
+    <rect width="290" height="140" rx="14" fill="#161b22" stroke="#a371f7" stroke-width="1.6"/>
+    <g transform="translate(28,32)" stroke="#a371f7" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M-14,10 L0,-12 L14,10 Z"/>
+      <line x1="0" y1="-2" x2="0" y2="3"/>
+      <circle cx="0" cy="7" r="0.6" fill="#a371f7"/>
+    </g>
+    <text x="54" y="26" font-size="15" font-weight="700" fill="#e6edf3">DECISIONS.md</text>
+    <text x="20" y="66" font-size="12.5" fill="#8b949e">Durable choices a future</text>
+    <text x="20" y="84" font-size="12.5" fill="#8b949e">agent must preserve.</text>
+    <text x="20" y="110" font-size="11" fill="#a371f7">durable</text>
+  </g>
+
+  <g transform="translate(355,270)">
+    <rect width="290" height="140" rx="14" fill="#161b22" stroke="#f2cc60" stroke-width="1.6"/>
+    <g transform="translate(28,32)" stroke="#f2cc60" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M-14,10 L0,-14 L14,10 Z" stroke-linejoin="round"/>
+      <line x1="0" y1="-4" x2="0" y2="3"/>
+      <circle cx="0" cy="7" r="0.6" fill="#f2cc60"/>
+    </g>
+    <text x="54" y="26" font-size="15" font-weight="700" fill="#e6edf3">RISKS.md</text>
+    <text x="20" y="66" font-size="12.5" fill="#8b949e">Open blockers and</text>
+    <text x="20" y="84" font-size="12.5" fill="#8b949e">explicitly accepted risks.</text>
+    <text x="20" y="110" font-size="11" fill="#f2cc60">tracked</text>
+  </g>
+
+  <g transform="translate(670,270)">
+    <rect width="290" height="140" rx="14" fill="#161b22" stroke="#19c37d" stroke-width="1.6"/>
+    <g transform="translate(28,32)" stroke="#19c37d" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M-12,-13 L0,-18 L12,-13 L12,2 C12,12 0,18 0,18 C0,18 -12,12 -12,2 Z"/>
+      <path d="M-5,1 L-1,7 L7,-5"/>
+    </g>
+    <text x="54" y="26" font-size="15" font-weight="700" fill="#e6edf3">FINAL_AUDIT.md</text>
+    <text x="20" y="66" font-size="12.5" fill="#8b949e">Reciprocal audit findings</text>
+    <text x="20" y="84" font-size="12.5" fill="#8b949e">and sign-off, or PROVISIONAL.</text>
+    <text x="20" y="110" font-size="11" fill="#19c37d">milestone</text>
+  </g>
+</svg>
