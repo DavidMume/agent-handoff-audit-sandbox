@@ -1,4 +1,4 @@
-<img src="assets/hero-banner.svg" alt="Agent Handoff & Audit — Claude Code and Codex talking only through .agent-coordination/" width="100%">
+<img src="assets/hero-banner.jpg" alt="Two robot agents, one orange one teal, exchanging a glowing shared notebook between them" width="100%">
 
 # 🤝 Agent Handoff & Audit
 
@@ -29,7 +29,7 @@ A tiny **shared ledger** — `.agent-coordination/` — that both agents read be
 
 ## What gets created
 
-<img src="assets/ledger-files.svg" alt="The six files inside .agent-coordination/: ACTIVE_SESSION, CURRENT_STATE, WORKLOG, DECISIONS, RISKS, FINAL_AUDIT" width="100%">
+<img src="assets/ledger-files.jpg" alt="A glowing folder with four documents floating around it, representing the coordination files" width="100%">
 
 Plus two short pointer files at the project root: `AGENTS.md` (for Codex) and `CLAUDE.md` (for Claude Code), both linking back to this protocol.
 
@@ -39,7 +39,7 @@ Plus two short pointer files at the project root: `AGENTS.md` (for Codex) and `C
 
 ## The workflow
 
-<img src="assets/workflow-cycle.svg" alt="Workflow cycle: start, work, handoff, takeover loop back to work; audit branches off at milestones" width="100%">
+<img src="assets/workflow-cycle.jpg" alt="Four glowing icons arranged in a loop: play, gear, exchange, refresh — representing start, work, handoff, takeover" width="100%">
 
 | Mode | What happens |
 |---|---|
