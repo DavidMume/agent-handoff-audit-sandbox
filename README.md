@@ -63,6 +63,14 @@ Plus two short pointer files at the project root: `AGENTS.md` (for Codex) and `C
 
 ---
 
+## Solution architecture
+
+<img src="assets/solution-architecture.svg" alt="Solution architecture: one canonical install at ~/.local/share/agent-handoff-audit, symlinked into ~/.claude/skills and ~/.agents/skills, with init-project.sh scaffolding .agent-coordination/ inside each target repo" width="100%">
+
+One real install on disk, two symlinks (so there's never a second copy to fall out of sync), and `init-project.sh` scaffolds the same `.agent-coordination/` folder into any repo you point it at.
+
+---
+
 ## Guardrails baked into the protocol
 
 - 🔒 **No secrets, ever** — no tokens, passwords, keys, or personal data in the ledger
