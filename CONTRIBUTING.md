@@ -8,8 +8,13 @@ Issues and pull requests are welcome.
    ```bash
    bash -n install.sh
    bash -n scripts/init-project.sh
+   bash -n tests/smoke-test.sh
    ```
-2. If you changed `scripts/init-project.sh`, run it twice against a scratch Git repo and confirm the second run reports `Kept existing ...` / `Instruction already present in ...` with no duplicated content — see [`docs/TROUBLESHOOTING.md`](docs/TROUBLESHOOTING.md) for the exact steps.
+2. Run the end-to-end installer and initializer checks:
+   ```bash
+   bash tests/smoke-test.sh
+   ```
+   The test uses an isolated temporary home and removes it when finished; it does not modify your real installation.
 3. Keep documentation in sync with actual script behavior. This repo intentionally avoids documenting commands, files, or flags that the code doesn't actually implement.
 4. Never commit real secrets, tokens, or personal data — including inside `.agent-coordination/` examples in `docs/examples/`, which must stay fictional.
 

@@ -31,7 +31,7 @@ Covered in full in the [README's step-by-step install](../README.md#step-by-step
 git clone https://github.com/DavidMume/agent-handoff-audit-sandbox.git
 cd agent-handoff-audit-sandbox
 bash -n install.sh          # syntax check, optional
-bash install.sh              # copies itself to ~/.local/share/agent-handoff-audit
+bash install.sh              # copies the runtime payload to ~/.local/share/agent-handoff-audit
                               # and symlinks it into ~/.claude/skills/ and ~/.agents/skills/
 ```
 
@@ -77,7 +77,7 @@ One real copy of the skill on disk, two symlinks pointing at it, and a per-proje
 
 Only one real copy exists so there's never a second copy of `SKILL.md` to drift out of sync — updating the skill means updating one folder, and both symlinks immediately see the change.
 
-`install.sh` copies its *entire containing folder*, which means if you run it from inside a full clone of this repository, the installed copy also carries this repo's own `.git/` history, `docs/`, and any local `.agent-coordination/` you initialized for hacking on the skill itself. That's harmless — it's just extra bytes on disk under `~/.local/share/agent-handoff-audit` — but don't be surprised to see it there.
+`install.sh` copies only the runtime payload shown above: `SKILL.md`, `install.sh`, `scripts/`, `templates/`, and `references/`. Repository-only content such as `.git/`, `.agent-coordination/`, `docs/`, `assets/`, and contribution metadata stays in the clone and is never added to the canonical install.
 
 ---
 

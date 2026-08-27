@@ -4,6 +4,7 @@ set -euo pipefail
 SOURCE_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 INSTALL_DIR="${HOME}/.local/share/agent-handoff-audit"
 STAMP="$(date +%Y%m%d-%H%M%S)"
+INSTALL_ITEMS=(SKILL.md install.sh scripts templates references)
 
 backup_target() {
   local target="$1"
@@ -17,11 +18,20 @@ backup_target() {
 if [ "$SOURCE_DIR" = "$INSTALL_DIR" ]; then
   echo "Skill is already in the canonical install directory."
 else
-  if [ -e "$INSTALL_DIR" ]; then
+  for item in "${INSTALL_ITEMS[@]}"; do
+    if [ ! -e "$SOURCE_DIR/$item" ]; then
+      echo "Required install item is missing: $SOURCE_DIR/$item" >&2
+      exit 1
+    fi
+  done
+
+  if [ -L "$INSTALL_DIR" ] || [ -e "$INSTALL_DIR" ]; then
     backup_target "$INSTALL_DIR"
   fi
-  mkdir -p "$(dirname "$INSTALL_DIR")"
-  cp -R "$SOURCE_DIR" "$INSTALL_DIR"
+  mkdir -p "$INSTALL_DIR"
+  for item in "${INSTALL_ITEMS[@]}"; do
+    cp -R "$SOURCE_DIR/$item" "$INSTALL_DIR/$item"
+  done
 fi
 
 mkdir -p "${HOME}/.claude/skills" "${HOME}/.agents/skills"
