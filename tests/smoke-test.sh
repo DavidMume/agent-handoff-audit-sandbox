@@ -41,6 +41,7 @@ assert_absent "$INSTALL_DIR/.git"
 assert_absent "$INSTALL_DIR/.agent-coordination"
 assert_absent "$INSTALL_DIR/docs"
 assert_absent "$INSTALL_DIR/assets"
+assert_absent "$INSTALL_DIR/tests"
 
 [ -L "$TEST_HOME/.claude/skills/agent-handoff-audit" ] || fail "Claude target is not a symlink"
 [ -L "$TEST_HOME/.agents/skills/agent-handoff-audit" ] || fail "Codex target is not a symlink"

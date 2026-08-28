@@ -483,6 +483,6 @@ Re-running `install.sh` backs up the previous install (timestamped, e.g. `agent-
 
 Issues and pull requests are welcome. Before opening a PR:
 
-- Run `bash -n install.sh` and `bash -n scripts/init-project.sh`.
-- Run `bash tests/smoke-test.sh` to exercise installation, reinstall backups, symlinks, local/tracked initialization, and idempotency inside an isolated temporary home.
+- Run `bash tests/check.sh` for shell syntax checks plus the complete isolated smoke test.
+- Use `bash tests/smoke-test.sh` directly when you only need to exercise installation, reinstall backups, symlinks, local/tracked initialization, and idempotency.
 - Keep documentation in sync with actual script behavior — this repo intentionally avoids documenting commands or files that don't exist yet.

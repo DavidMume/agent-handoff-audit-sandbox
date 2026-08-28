@@ -4,17 +4,12 @@ Issues and pull requests are welcome.
 
 ## Before opening a PR
 
-1. Syntax-check any shell script you touched:
+1. Run the complete local verification command:
    ```bash
-   bash -n install.sh
-   bash -n scripts/init-project.sh
-   bash -n tests/smoke-test.sh
+   bash tests/check.sh
    ```
-2. Run the end-to-end installer and initializer checks:
-   ```bash
-   bash tests/smoke-test.sh
-   ```
-   The test uses an isolated temporary home and removes it when finished; it does not modify your real installation.
+   This checks the shell syntax and runs the end-to-end installer and initializer smoke test. The test uses an isolated temporary home and removes it when finished; it does not modify your real installation.
+2. If you only need the end-to-end behavior check, run `bash tests/smoke-test.sh` directly.
 3. Keep documentation in sync with actual script behavior. This repo intentionally avoids documenting commands, files, or flags that the code doesn't actually implement.
 4. Never commit real secrets, tokens, or personal data — including inside `.agent-coordination/` examples in `docs/examples/`, which must stay fictional.
 
