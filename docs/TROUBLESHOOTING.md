@@ -80,7 +80,7 @@ Same cause, check, and fix as `AGENTS.md` above — just run `grep -n "agent-han
 - **Symptom:** running `install.sh` prints `Backing up existing target: ... -> ....backup-<timestamp>`.
 - **Likely cause:** this is expected, informational output — not an error. A prior install (from this repo or another copy) was already present.
 - **How to check:** `ls -d ~/.local/share/agent-handoff-audit.backup-* 2>/dev/null` to see prior backups.
-- **Safe fix:** nothing required — the new version is installed and the old one is preserved under a timestamped name. Delete old backups by hand once you've confirmed the new install works.
+- **Safe fix:** nothing required — the new version is installed and the old one is preserved under a timestamped name. Same-second backups receive an additional numeric suffix instead of overwriting one another. Delete old backups by hand once you've confirmed the new install works.
 
 ### A previous agent left the session open
 

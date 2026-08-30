@@ -10,6 +10,11 @@ backup_target() {
   local target="$1"
   if [ -L "$target" ] || [ -e "$target" ]; then
     local backup="${target}.backup-${STAMP}"
+    local sequence=1
+    while [ -L "$backup" ] || [ -e "$backup" ]; do
+      backup="${target}.backup-${STAMP}-${sequence}"
+      sequence=$((sequence + 1))
+    done
     echo "Backing up existing target: $target -> $backup"
     mv "$target" "$backup"
   fi

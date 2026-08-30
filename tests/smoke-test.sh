@@ -27,9 +27,13 @@ assert_absent() {
 }
 
 TEST_HOME="$TEST_ROOT/home"
-mkdir -p "$TEST_HOME"
+FIXED_BIN="$TEST_ROOT/bin"
+mkdir -p "$TEST_HOME" "$FIXED_BIN"
+printf '#!/usr/bin/env bash\nprintf "20260830-182144\\n"\n' > "$FIXED_BIN/date"
+chmod +x "$FIXED_BIN/date"
+TEST_PATH="$FIXED_BIN:$PATH"
 
-HOME="$TEST_HOME" bash "$REPO_ROOT/install.sh" >/dev/null
+PATH="$TEST_PATH" HOME="$TEST_HOME" bash "$REPO_ROOT/install.sh" >/dev/null
 
 INSTALL_DIR="$TEST_HOME/.local/share/agent-handoff-audit"
 assert_file "$INSTALL_DIR/SKILL.md"
@@ -48,8 +52,10 @@ assert_absent "$INSTALL_DIR/tests"
 [ "$(readlink "$TEST_HOME/.claude/skills/agent-handoff-audit")" = "$INSTALL_DIR" ] || fail "Claude symlink target is incorrect"
 [ "$(readlink "$TEST_HOME/.agents/skills/agent-handoff-audit")" = "$INSTALL_DIR" ] || fail "Codex symlink target is incorrect"
 
-HOME="$TEST_HOME" bash "$REPO_ROOT/install.sh" >/dev/null
-find "$TEST_HOME/.local/share" -maxdepth 1 -type d -name 'agent-handoff-audit.backup-*' | grep -q . || fail "Reinstall did not back up the previous install"
+PATH="$TEST_PATH" HOME="$TEST_HOME" bash "$REPO_ROOT/install.sh" >/dev/null
+PATH="$TEST_PATH" HOME="$TEST_HOME" bash "$REPO_ROOT/install.sh" >/dev/null
+BACKUP_COUNT="$(find "$TEST_HOME/.local/share" -maxdepth 1 -type d -name 'agent-handoff-audit.backup-*' | wc -l | tr -d ' ')"
+[ "$BACKUP_COUNT" -eq 2 ] || fail "Expected two collision-safe install backups, found $BACKUP_COUNT"
 
 LOCAL_PROJECT="$TEST_ROOT/local-project"
 mkdir -p "$LOCAL_PROJECT"

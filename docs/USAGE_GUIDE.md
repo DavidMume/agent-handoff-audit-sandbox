@@ -206,7 +206,7 @@ git pull --ff-only
 bash install.sh
 ```
 
-`install.sh` detects the existing install and symlinks, backs each one up with a timestamp suffix (e.g. `agent-handoff-audit.backup-20260803-194403`), then installs the new version. Backups accumulate next to the original path — list them with:
+`install.sh` detects the existing install and symlinks, backs each one up with a timestamp suffix (e.g. `agent-handoff-audit.backup-20260803-194403`), then installs the new version. If multiple backups are created in the same second, a numeric suffix prevents collisions. Backups accumulate next to the original path — list them with:
 
 ```bash
 ls -d ~/.local/share/agent-handoff-audit.backup-* 2>/dev/null
